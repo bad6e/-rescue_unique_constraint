@@ -26,7 +26,7 @@ module RescueUniqueConstraint
           begin
             create_or_update_without_rescue
           rescue ActiveRecord::RecordNotUnique => e
-            binding.break
+            binding.pry
             self.class.index_rescue_handler.matching_indexes(e).each do |matching_index|
               errors.add(matching_index.field, :taken)
             end
